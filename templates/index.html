@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Book Assistant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="app">
+    <aside class="shelf" id="shelf">
+    <h1 class="brand">AI Book Assistant</h1>
+    <p class="muted">Add your books, then ask across all of them or just the ones you pick.</p>
+
+    <label class="drop" id="drop">
+        <input type="file" id="fileInput" accept=".pdf,.txt" multiple hidden>
+        <strong>Add books</strong>
+        <span>Drop PDF or TXT files here, or click to browse</span>
+    </label>
+    <div class="status" id="status" role="status"></div>
+
+    <div class="shelf-head">
+        <h2>Your shelf</h2>
+        <button class="link" id="toggleAll">Select all</button>
+    </div>
+    <ul class="books" id="books"></ul>
+    </aside>
+
+    <main class="chat">
+    <header class="chat-head">
+        <button class="menu" id="menu" aria-label="Show books">Books</button>
+        <span id="scope" class="muted">No books yet</span>
+    </header>
+
+    <div class="messages" id="messages">
+        <div class="empty" id="empty">
+        <h2>What would you like to know?</h2>
+        <p>Add a book on the left, then ask a question. With several books selected, you get an answer from each one.</p>
+        </div>
+    </div>
+
+    <div class="composer">
+        <textarea id="question" rows="1" placeholder="Ask a question about your books"></textarea>
+        <button id="send">Ask</button>
+    </div>
+    </main>
+</div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

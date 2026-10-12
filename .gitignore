@@ -1,0 +1,19 @@
+
+# Environment variables and API keys
+.env
+.env.*
+
+# Python virtual environments
+.venv/
+venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Generated ChromaDB databases
+chroma_db/
+chroma_langchain_db/
+
+# Editor settings
+.vscode/
