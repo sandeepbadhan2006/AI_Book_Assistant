@@ -1,7 +1,7 @@
 import os, json, uuid
 from flask import Flask, request, jsonify, render_template
 from dotenv import load_dotenv
-from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEndpointEmbeddings
 from langchain_groq import ChatGroq
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_chroma import Chroma
@@ -18,7 +18,12 @@ os.makedirs(UPLOAD_DIR, exist_ok=True)
 app = Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"] = 200 * 1024 * 1024  # 200 MB
 
-embedding = HuggingFaceEmbeddings()
+embedding = HuggingFaceEndpointEmbeddings(
+    model="sentence-transformers/all-MiniLM-L6-v2",
+    task="feature-extraction",
+    huggingfacehub_api_token=os.getenv("HUGGINGFACEHUB_API_TOKEN"),
+)
+
 vectorstore = Chroma(
     collection_name="library",          # new collection: every chunk carries book_id
     embedding_function=embedding,
