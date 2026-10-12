@@ -1,4 +1,6 @@
-streamlit
+
+flask
+gunicorn
 python-dotenv
 langchain
 langchain-community
